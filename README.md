@@ -1,3 +1,3 @@
-React, Styled-Components, CryptoCompare
+React, Styled-Components, Lodash, CryptoCompare
 
 `npm start`
