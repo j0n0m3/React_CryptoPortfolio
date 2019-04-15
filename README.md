@@ -1,3 +1,3 @@
-React, Styled-Components, CryptoCompare API
+React, Styled-Components, CryptoCompare
 
 `npm start`
