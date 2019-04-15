@@ -20,7 +20,7 @@ export class AppProvider extends React.Component {
   };
 
   fetchCoins = async () => {
-    let coinList = await cc.coinList().Data;
+    let coinList = (await cc.coinList()).Data;
     this.setState({ coinList });
   };
 
@@ -30,7 +30,7 @@ export class AppProvider extends React.Component {
       page: 'dashboard'
     });
     localStorage.setItem(
-      'cryptoDash',
+      'cryptoPortfolio',
       JSON.stringify({
         test: 'hello'
       })
@@ -38,8 +38,8 @@ export class AppProvider extends React.Component {
   };
 
   savedSettings() {
-    let cryptoDashData = JSON.parse(localStorage.getItem('cryptoDash'));
-    if (!cryptoDashData) {
+    let cryptoCompareData = JSON.parse(localStorage.getItem('cryptoPortfolio'));
+    if (!cryptoCompareData) {
       return { page: 'settings', firstVisit: true };
     }
     return {};

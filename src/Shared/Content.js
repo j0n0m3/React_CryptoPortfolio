@@ -6,7 +6,8 @@ export default function(props) {
     <AppContext.Consumer>
       {({ coinList }) => {
         if (!coinList) {
-          return <div> Loading Data </div>;
+          return <div> Loading Assets </div>;
+          // console.log(coinList);
         }
         return <div> {props.children} </div>;
       }}

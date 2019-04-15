@@ -6,9 +6,7 @@ export default function({ firstVisit }) {
     <AppContext.Consumer>
       {({ firstVisit }) =>
         firstVisit ? (
-          <div>
-            Welcome to the dash, please select your favorite coins to begin.{' '}
-          </div>
+          <div>Please select your favorite coins to begin. </div>
         ) : null
       }
     </AppContext.Consumer>
