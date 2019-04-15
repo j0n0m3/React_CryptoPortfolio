@@ -5,9 +5,7 @@ export default function({ firstVisit }) {
   return (
     <AppContext.Consumer>
       {({ firstVisit }) =>
-        firstVisit ? (
-          <div>Please select your favorite coins to begin. </div>
-        ) : null
+        firstVisit ? <div>Please add to your portfolio</div> : null
       }
     </AppContext.Consumer>
   );
