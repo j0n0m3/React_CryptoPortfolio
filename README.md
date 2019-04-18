@@ -1,3 +1,3 @@
 React, Styled-Components, Lodash, CryptoCompare
 
-`npm start`
+https://react-crypto-portfolio.herokuapp.com/
