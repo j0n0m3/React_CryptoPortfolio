@@ -19,6 +19,7 @@ export class AppProvider extends React.Component {
       removeCoin: this.removeCoin,
       isInFavorites: this.isInFavorites,
       confirmFavorites: this.confirmFavorites,
+      setCurrentFavorite: this.setCurrentFavorite,
       setFilteredCoins: this.setFilteredCoins
     };
   }
@@ -45,7 +46,6 @@ export class AppProvider extends React.Component {
       try {
         let priceData = await cc.priceFull(this.state.favorites[i], 'USD');
         returnData.push(priceData);
-        console.log(priceData);
       } catch (e) {
         console.warn('Fetch price error: ', e);
       }
@@ -69,10 +69,12 @@ export class AppProvider extends React.Component {
   isInFavorites = key => _.includes(this.state.favorites, key);
 
   confirmFavorites = () => {
+    let currentFavorite = this.state.favorites[0];
     this.setState(
       {
         firstVisit: false,
-        page: 'dashboard'
+        page: 'dashboard',
+        currentFavorite
       },
       () => {
         this.fetchPrices();
@@ -81,7 +83,21 @@ export class AppProvider extends React.Component {
     localStorage.setItem(
       'cryptoPortfolio',
       JSON.stringify({
-        favorites: this.state.favorites
+        favorites: this.state.favorites,
+        currentFavorite
+      })
+    );
+  };
+
+  setCurrentFavorite = sym => {
+    this.setState({
+      currentFavorite: sym
+    });
+    localStorage.setItem(
+      'cryptoPortfolio',
+      JSON.stringify({
+        ...JSON.parse(localStorage.getItem('cryptoPortfolio')),
+        currentFavorite: sym
       })
     );
   };
@@ -91,8 +107,8 @@ export class AppProvider extends React.Component {
     if (!cryptoCompareData) {
       return { page: 'settings', firstVisit: true };
     }
-    let { favorites } = cryptoCompareData;
-    return { favorites };
+    let { favorites, currentFavorite } = cryptoCompareData;
+    return { favorites, currentFavorite };
   }
 
   setPage = page => this.setState({ page });
